@@ -1,5 +1,9 @@
 <template>
-  <view>
+	<!-- 搜索组件 -->
+	<view class="search-box">
+		<my-search @click="gotoSearch"></my-search>
+	</view>
+	<view>
     <!-- 轮播图的区域 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <swiper-item v-for="(item, i) in swiperList" :key="i">
@@ -97,48 +101,59 @@
 	  this.setData({
 		showModal: false,
 	  });
-	}
+	},
+      gotoSearch() {
+        uni.navigateTo({
+          url: '/subpkg/search/search'
+        })
+      }
     }
   }
 </script>
 
 <style lang="scss">
   swiper {
-    height: 330rpx;
-
-    .swiper-item,
-    image {
+      height: 330rpx;
+  
+      .swiper-item,
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  
+    .nav-list {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+  
+      .nav-img {
+        width: 128rpx;
+        height: 140rpx;
+      }
+    }
+  
+    .floor-title {
       width: 100%;
-      height: 100%;
+      height: 60rpx;
     }
-  }
-
-  .nav-list {
-    display: flex;
-    justify-content: space-around;
-    margin: 15px 0;
-
-    .nav-img {
-      width: 128rpx;
-      height: 140rpx;
+  
+    .right-img-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
-  }
-
-  .floor-title {
-    width: 100%;
-    height: 60rpx;
-  }
-
-  .right-img-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .floor-img-box {
-    display: flex;
-    padding-left: 10rpx;
-  }
+  
+    .floor-img-box {
+      display: flex;
+      padding-left: 10rpx;
+    }
+    
+    .search-box {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
   .card {
     background-color: #bde237; /* 设置蓝色背景 */
     border-radius: 10rpx; /* 圆角 */
